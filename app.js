@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var routeEmployee = require('./routes/routeEmployee');
+
 const home = require('./routes/home');
 
 const port = 3000;
@@ -18,3 +20,4 @@ app.listen(port,()=>{
   console.log(`application is on port:${port}`);
 });
 
+app.use('/employees', routeEmployee);
