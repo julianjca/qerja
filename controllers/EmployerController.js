@@ -9,7 +9,7 @@ class EmployerController {
             password    : req.body.password
         })
         .then(employer => {
-            res.render('');
+            res.render('employerLogin');
         })
         .catch(err => {
             res.send(err);

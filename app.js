@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var routeEmployee = require('./routes/routeEmployee');
+var routeEmployer = require('./routes/routeEmployer');
+
 
 const home = require('./routes/home');
 
@@ -21,4 +23,5 @@ app.listen(port,()=>{
 });
 
 app.use('/employees', routeEmployee);
-app.use('/employer', routeEmployer)
+app.use('/employers', routeEmployer);
+

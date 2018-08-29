@@ -8,15 +8,15 @@ router.get('/', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('');
+    res.render('employerRegister');
 });
 
 router.post('/register', function(req, res) {
     EmployerController.register(req, res);
 });
 
-router.get('/edit', function(req, res) {
-    res.render('');
+router.get('/dashboard', function(req, res) {
+    res.render('employerDashboard');
 });
 
 router.post('/edit', function(req, res) {
