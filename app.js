@@ -21,3 +21,4 @@ app.listen(port,()=>{
 });
 
 app.use('/employees', routeEmployee);
+app.use('/employer', routeEmployer)
