@@ -1,10 +1,10 @@
 var express = require('express');
 var router = require('express').Router();
-var EmployeeController = require('../controllers/EmployeeController');
+var EmployerController = require('../controllers/EmployerController');
 router.use( express.static( "public" ) );
 
 router.get('/', function(req, res) {
-    res.render('employeeLogin');
+    res.render('employerLogin');
 });
 
 router.get('/register', function(req, res) {
@@ -12,7 +12,7 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-    EmployeeController.register(req, res);
+    EmployerController.register(req, res);
 });
 
 router.get('/edit', function(req, res) {
@@ -20,7 +20,7 @@ router.get('/edit', function(req, res) {
 });
 
 router.post('/edit', function(req, res) {
-    EmployeeController.edit(req, res);
+    EmployerController.edit(req, res);
 });
 
 
