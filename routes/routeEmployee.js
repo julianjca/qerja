@@ -1,7 +1,8 @@
 var express = require('express');
 var router = require('express').Router();
 var EmployeeController = require('../controllers/EmployeeController');
-router.use( express.static( "public" ) );
+router.use(express.static("public"));
+
 
 router.get('/', function(req, res) {
     res.render('employeeLogin');
@@ -23,6 +24,5 @@ router.post('/edit', function(req, res) {
     EmployeeController.edit(req, res);
 });
 
-
-
 module.exports = router;
+

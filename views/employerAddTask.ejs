@@ -87,18 +87,24 @@
 <body>
   <img src="logo.png" class="logo" />
 
-  <h1>WELCOME
+  <h1>HI
     <br>
-    EMPLOYER
+    EMPLOYEE
     <br>🤘🏻
+    <br>
+    PUT YOUR INFORMATION DOWN BELOW
   </h1>
 
   <form class="login-form" action="" method="POST">
-    <label for="username">email</label>
-    <input type="text" id="email" name="email" placeholder="email">
+    <label for="username">Task Name</label>
+    <input type="text" id="fname" name="task_name" placeholder="Task Name">
 
-    <label for="password">password</label>
-    <input type="text" id="lname" name="password" placeholder="password">
+    <label for="task_type">Task Type</label>
+    <select id="profession" name="task_type">
+      <option value="photographer">photographer</option>
+      <option value="developer">developer</option>
+      <option value="designer">designer</option>
+    </select>
 
     <input type="submit" value="Submit">
   </form>
