@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Home Page</title>
+  <title>Employee Login Page</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet">
 
 
@@ -24,12 +24,13 @@
       margin-right: auto;
     }
 
-    h2 {
+    h2,h3 {
       font-size: 20px;
       font-weight: 500;
       text-align: center;
       margin-left: auto;
       margin-right: auto;
+      text-decoration: none;
     }
 
     .logo {
@@ -44,53 +45,42 @@
       border-bottom: 2px solid black;
     }
 
-    .container-choose {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 40%;
-      margin-left: 34%;
-      margin-right: auto;
-      text-align: center;
-      margin-top: 80px;
-    }
-
-    .choice1,
-    .choice2 {
-      border: 2px solid black;
-      width: 60%;
-      padding: 10px 1px;
-    }
-
-    .choice1 :hover,
-    .choice2 :hover {
-      border: 2px solid black;
-      width: 60%;
-      padding: 10px 50px;
-      background-color: black;
-    }
-
-    .choice1 a:hover,
-    .choice2 a:hover {
-      color: white;
-    }
-
-    .choice1 a,
-    .choice2 a {
-      text-decoration: none;
-      color: black;
-    }
-
-    p {
-      font-family: 'Lato';
+    .login-form {
       margin-left: auto;
       margin-right: auto;
       text-align: center;
-      font-size: 20px;
-      margin-top: 50px;
-      width: 40%;
-      padding-bottom: 20px;
-      border-bottom: 3px solid black;
+      font-family: 'Lato';
+      font-size: 30px;
     }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type=text], select {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      width: 30%;
+      padding: 12px 20px;
+      display: block;
+      border: 1px solid black;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+  }
+
+    input[type=submit] {
+    width: 30%;
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
   </style>
 
 </head>
@@ -104,14 +94,19 @@
     <br>🤘🏻
   </h1>
 
-  <div class="container-choose">
-    <div class="choice1">
-      <a href="/employees/">EMPLOYEE</a>
-    </div>
-    <div class="choice2">
-      <a href="/employers/">EMPLOYER</a>
-    </div>
-  </div>
+  <form class="login-form" action="" method="POST">
+    <label for="username">email</label>
+    <input type="text" id="fname" name="email" placeholder="email">
+
+    <label for="password">password</label>
+    <input type="text" id="lname" name="password" placeholder="password">
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <h2>Does not have an account? <br><a href="/employees/register">register</a></h2>
+  <h3><a href="/">BACK</a></h3>
+
 
 </body>
 
