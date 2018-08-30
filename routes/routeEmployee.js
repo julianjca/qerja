@@ -41,5 +41,10 @@ router.post('/edit', function(req, res) {
 router.get('/takeJob/:id1/:id2', function(req, res) { //employ  //job
     EmployeeController.takeJob(req, res);
 });
+
+router.get('/done/:id', function(req, res) {
+    EmployeeController.deleteJobDone(req, res);
+});
+
 module.exports = router;
 

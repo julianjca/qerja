@@ -46,11 +46,11 @@ router.get('/delete/:id', function(req, res) {
     EmployerController.deleteJob(req, res);
 });
 
-router.get('/editTask/:id', function(req, res) {
+router.get('/edit/:id', function(req, res) {
     EmployerController.editJobGet(req, res);
 });
 
-router.post('/editTask/:id', function(req, res) {
+router.post('/edit/:id', function(req, res) {
     EmployerController.editJob(req, res);
 });
 

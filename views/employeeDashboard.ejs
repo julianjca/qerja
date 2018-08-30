@@ -138,9 +138,18 @@
   </h1>
 
   <h2>SEEING ALL JOBS FOR <br>
-    <%= data[0].type %>
+    <%= userprof %>
   </h2>
 
+  <% if(data.length===0) { %>
+  <h4 style="
+    font-size: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  ">No Jobs
+    Available 😭</h4>
+  <% } else{ %>
   <table>
     <tr>
       <th>No.</th>
@@ -148,8 +157,6 @@
       <th>Available</th>
       <th>Option</th>
     </tr>
-
-
 
     <% for (var i = 0; i < data.length;i++) { %>
     <tr>
@@ -167,13 +174,28 @@
         <%}%>
       </td>
       <td>
-        <a href="/employees/takeJob/<%= userId %>/<%=data[i].id%>">TAKE</a>
+        <a href="/employees/done/<%= userId %>/<%=data[i].id%>">TAKE</a>
       </td>
     </tr>
     <% } %>
   </table>
+  <% } %>
 
-  <h2>JOBS TO FINISH 🔥
+  <% if(data2.length===0) { %>
+  <h4 style="
+    font-size: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  ">No
+    Current
+    Job To Finish 😭</h4>
+  <% } else{ %>
+  <h2 style="
+    font-size: 40px;
+    margin-top: 20px;
+
+  ">JOBS TO FINISH 🔥
   </h2>
   <table>
     <tr>
@@ -193,11 +215,14 @@
         <%= data2[i].name %>
       </td>
       <td>
-        <a href="/employees/takeJob/<%=data2[i].id%>">DONE</a>
+        <a href="/employees/done/<%=data2[i].id%>">DONE</a>
       </td>
     </tr>
     <% } %>
   </table>
+  <% } %>
+
+
 
 
 </body>

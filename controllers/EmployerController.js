@@ -5,7 +5,16 @@ const crypto = require('crypto');
 
 class EmployerController {
     static findAll(req,res){
-        Job.findAll()
+        Job.findAll(
+            {
+                attributes: [
+                    'id',
+                    'name',
+                    'type',
+                    'available'
+                 ],
+            }
+        )
         .then(data=>{
             res.render('employerDashboard',{
                 data : data

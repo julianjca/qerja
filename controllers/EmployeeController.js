@@ -77,20 +77,38 @@ class EmployeeController {
 
     static findAllJobs(req,res){
         Job.findAll(
-            {where : {
-                type : req.session.user.profession
+            {
+                attributes: [
+                    'id',
+                    'name',
+                    'type',
+                    'available'
+                 ],
+                where : {
+                type : req.session.user.profession,
+                available : true
             }}
         )
         .then(data =>{
+            console.log(data);
+
             const userId = req.session.user.id;
+            const userProfession = req.session.user.profession;
             Job.findAll({
+                attributes: [
+                    'id',
+                    'name',
+                    'type',
+                    'available'
+                 ],
                 where : {EmployeeId:userId}
             })
             .then(data2=>{
                 res.render('employeeDashboard',{
                     data : data,
                     userId :userId,
-                    data2 : data2
+                    data2 : data2,
+                    userprof : userProfession
                 });
             })
             .catch(err=>{
@@ -104,8 +122,29 @@ class EmployeeController {
 
     static takeJob(req, res){
         Job.update({
-        EmployeeId: req.params.id1
+        EmployeeId: req.params.id1,
+        available : false
+        }, {where: {
+            id: req.params.id2
+        }})
+        .then(job => {
+            res.redirect('/employees/Dashboard');
         })
+        .catch(err => {
+            res.send(err);
+        });
+    }
+
+    static deleteJobDone(req, res){
+        Job.destroy({where: {
+            id: req.params.id
+        }})
+        .then(del => {
+            res.redirect('/employees/Dashboard');
+        })
+        .catch(err => {
+            res.send(err);
+        });
     }
 
 }
