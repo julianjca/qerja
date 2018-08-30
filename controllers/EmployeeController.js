@@ -1,11 +1,10 @@
 var Employee = require('../models/').Employee;
-var Job = require('../models/').Jobs;
+var Job = require('../models/').Job;
 const crypto = require('crypto');
 class EmployeeController {
 
     static register(req, res) {
         const secret = req.body.email;
-        res.send(req.body);
         const hash = crypto.createHmac('sha256', secret)
                    .update(req.body.password)
                    .digest('hex');
@@ -54,6 +53,60 @@ class EmployeeController {
         });
     }
 
+    static findLogin(email,password,req,res){
+        Employee.findOne(
+            {where:{
+                email:email,
+                password:password}}
+        )
+        .then(user=>{
+            req.session.user = {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                role : user.role,
+                profession : user.profession
+            };
+
+            res.redirect('/employees/dashboard');
+        })
+        .catch(err=>{
+            res.send(err);
+        });
+    }
+
+    static findAllJobs(req,res){
+        Job.findAll(
+            {where : {
+                type : req.session.user.profession
+            }}
+        )
+        .then(data =>{
+            const userId = req.session.user.id;
+            Job.findAll({
+                where : {EmployeeId:userId}
+            })
+            .then(data2=>{
+                res.render('employeeDashboard',{
+                    data : data,
+                    userId :userId,
+                    data2 : data2
+                });
+            })
+            .catch(err=>{
+                res.send(err);
+            })
+        })
+        .catch(err=>{
+            res.send(err);
+        })
+    }
+
+    static takeJob(req, res){
+        Job.update({
+        EmployeeId: req.params.id1
+        })
+    }
 
 }
 

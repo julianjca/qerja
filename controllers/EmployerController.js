@@ -89,6 +89,43 @@ class EmployerController {
             res.send(err);
         });
     }
+
+    static deleteJob(req, res){
+        Job.destroy({where : {
+            id: req.params.id
+        }})
+        .then(del => {
+            res.redirect('/employers/dashboard');
+        })
+        .catch(err => {
+            res.send(err);
+        });
+    }
+
+    static editJob(req, res){
+        Job.update({
+            name: req.body.name,
+            type: req.body.type,
+        }, {where: {
+            id: req.params.id
+        }})
+        .then(job => {
+            res.redirect('/employers/dashboard');
+        })
+        .catch(err => {
+            res.send(err);
+        });
+    }
+
+    static editJobGet(req, res){
+        Job.findById(req.params.id)
+        .then(job => {
+            res.render('', {data: job})
+        })
+        .catch(err => {
+            res.send(err);
+        });
+    }
 }
 
 module.exports = EmployerController;
