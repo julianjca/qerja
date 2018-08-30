@@ -35,8 +35,11 @@ router.post('/edit', function(req, res) {
 });
 
 router.get('/addTask', isLoginEmployer,function(req, res) {
-    EmployerController.addTask(req, res);
+    res.render('employerAddTask');
 });
 
+router.post('/addTask',function(req, res) {
+    EmployerController.addTask(req, res);
+});
 
 module.exports = router;

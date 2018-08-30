@@ -7,7 +7,46 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Employee Login Page</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet">
+  <style>
+    html,
+    body {
+      font-family: 'Lato';
+    }
 
+    h2 {
+      margin-top: 10%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h3 {
+      margin-top: 2%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
 
   <style>
     html {
@@ -96,8 +135,43 @@
     <br>
     THESE ARE YOUR PROJECT LIST
   </h1>
-
   <h3><a href="/employers/addTask">ADD TASK</a></h3>
+
+  <table>
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Available</th>
+      <th>Option</th>
+    </tr>
+
+    <% for (var i = 0; i < data.length;i++) { %>
+    <tr>
+      <td>
+        <%= i+1 %>
+      </td>
+      <td>
+        <%= data[i].name %>
+      </td>
+      <td>
+        <%= data[i].type %>
+      </td>
+      <td>
+        <%if(data[i].available===true){  %>
+        ✅
+        <%} else{%>
+        ❌
+        <%}%>
+      </td>
+      <td>
+        <a href="/teacher/edit/<%= data[i].id %>">Edit</a>
+        <a href="/teacher/delete/<%= data[i].id %>">Delete</a>
+      </td>
+    </tr>
+    <% } %>
+  </table>
+
 
 </body>
 

@@ -1,4 +1,5 @@
 var Employee = require('../models/').Employee;
+var Job = require('../models/').Jobs;
 const crypto = require('crypto');
 class EmployeeController {
 
@@ -43,7 +44,15 @@ class EmployeeController {
         });
     }
 
+    static JobList(req, res){
+        Job.findAll()
+        .then(jobs => {
 
+        })
+        .catch(err => {
+            res.send(err);
+        });
+    }
 
 
 }

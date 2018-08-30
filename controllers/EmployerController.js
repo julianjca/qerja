@@ -5,9 +5,17 @@ const crypto = require('crypto');
 
 class EmployerController {
     static findAll(req,res){
-        res.render('employerDashboard');
-
+        Job.findAll()
+        .then(data=>{
+            res.render('employerDashboard',{
+                data : data
+            });
+        })
+        .catch(err=>{
+            res.send(err);
+        });
     }
+
     static register(req, res){
         const secret = req.body.email;
         const hash = crypto.createHmac('sha256', secret)
@@ -43,13 +51,15 @@ class EmployerController {
             res.send(err);
         });
     }
+
     static addTask(req, res){
         Job.create({
-            name: req.body.name,
-            type: req.body.type
+            EmployerId : req.session.user.id,
+            name: req.body.task_name,
+            type: req.body.task_type,
         })
         .then(job => {
-
+            res.redirect('/employers/dashboard');
         })
         .catch(err => {
             res.send(err);
