@@ -1,10 +1,15 @@
 var express = require('express');
+const session = require('express-session')
 var app = express();
 var bodyParser = require('body-parser');
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+}));
+
 var routeEmployee = require('./routes/routeEmployee');
 var routeEmployer = require('./routes/routeEmployer');
-
-
 const home = require('./routes/home');
 
 const port = 3000;

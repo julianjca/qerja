@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   const Employer = sequelize.define('Employer', {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
+    role : DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
       validate :{
@@ -35,7 +36,13 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     password: DataTypes.STRING
-  }, {});
+  }, {
+    hooks :{
+      beforeCreate(instances,options){
+        instances.role = 'employer';
+      }
+    }
+  });
   Employer.associate = function(models) {
     Employer.belongsToMany(models.Employee,{ through: models.Job });
   };
