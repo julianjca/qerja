@@ -1,11 +1,16 @@
 function isLoginEmployer(req,res,next){
-  const login = req.session.user.role;
-  if(login==='employer'){
-    console.log('masuk');
-    next();
-  } else{
+  if(req.session.user===undefined){
     res.redirect('/employers');
   }
+  else{
+    if(req.session.user.role==='employer'){
+      console.log('masuk');
+      next();
+    } else{
+      res.redirect('/employers');
+    }
+  }
+
 }
 
 module.exports = isLoginEmployer;

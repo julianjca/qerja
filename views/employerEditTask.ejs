@@ -80,55 +80,36 @@
     border-radius: 4px;
     cursor: pointer;
 }
-.button-back{
-  text-decoration: none;
-      color: white;
-      background-color: black;
-      border-radius: 20px;
-      padding: 5px 10px;
-      margin-bottom: 30px;
-}
-.hvr-grow {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-}
-.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
   </style>
 
 </head>
 
 <body>
-  <a href="/"><img src="logo.png" class="logo" /></a>
+  <a href="/employers/dashboard"><img src="logo.png" class="logo" /></a>
 
-  <h1>WELCOME
+  <h1>HI
     <br>
     EMPLOYER
     <br>🤘🏻
+    <br>
+    EDIT YOUR TASK BELOW
   </h1>
 
-  <form class="login-form" action="/employers" method="POST">
-    <label for="username">email</label>
-    <input type="text" id="email" name="email" placeholder="email" required="required">
+  <form class="login-form" action="/employers/edit/<%=id%>" method="POST">
+    <label for="username">Task Name</label>
+    <input type="text" id="fname" name="task_name" placeholder="Task Name">
 
-    <label for="password">password</label>
-    <input type="text" id="lname" name="password" placeholder="password" required="required">
+    <label for="task_type">Task Type</label>
+    <select id="profession" name="task_type">
+      <option value="photographer">photographer</option>
+      <option value="developer">developer</option>
+      <option value="designer">designer</option>
+    </select>
 
-    <input type="submit" value="Submit" class="hvr-grow">
+    <input type="submit" value="Submit">
   </form>
 
-  <h2>Does not have an account? <br><a href="/employers/register">register</a></h2>
-
-  <h3><a href="/" class="button-back">BACK</a></h3>
+  <h3><a href="/employers/dashboard">BACK</a></h3>
 
 
 </body>

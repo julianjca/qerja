@@ -18,7 +18,7 @@ router.post('/',function(req, res) {
     EmployeeController.findLogin(req.body.email,hash,req,res);
 });
 
-router.get('/dashboard', function(req, res) {
+router.get('/dashboard',isLoginEmployee, function(req, res) {
     EmployeeController.findAllJobs(req,res);
 });
 
@@ -38,11 +38,11 @@ router.post('/edit', function(req, res) {
     EmployeeController.edit(req, res);
 });
 
-router.get('/takeJob/:id1/:id2', function(req, res) { //employ  //job
+router.get('/takeJob/:id1/:id2',isLoginEmployee, function(req, res) { //employ  //job
     EmployeeController.takeJob(req, res);
 });
 
-router.get('/done/:id', function(req, res) {
+router.get('/done/:id',isLoginEmployee, function(req, res) {
     EmployeeController.deleteJobDone(req, res);
 });
 

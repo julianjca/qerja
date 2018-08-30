@@ -1,6 +1,17 @@
 var Employer = require('../models/').Employer;
 var Job = require('../models/').Job;
+var Employee = require('../models/').Employee;
+
 const crypto = require('crypto');
+const nodeMailer = require('nodemailer');
+var transporter = nodeMailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'julianjca11@gmail.com',
+        pass: 'JosephineThalia11'
+    }
+});
+
 
 
 class EmployerController {
@@ -68,7 +79,43 @@ class EmployerController {
             type: req.body.task_type,
         })
         .then(job => {
-            res.redirect('/employers/dashboard');
+            Employee.findAll({
+                attributes: [
+                    'email'
+                 ],
+                 where : {
+                     profession : job.type
+                 }
+            })
+            .then(data =>{
+                let emails = '';
+                for(let i = 0;i<data.length;i++){
+                    if(i===data.length-1){
+                        emails+= `${data[i].email}`;
+                    } else{
+                        emails+= `${data[i].email}, `;
+                    }
+                }
+
+                const mailOptions = {
+                    from: '"Julian" <julianjca11@gmail.com>', // sender address
+                    to: emails, // list of receivers
+                    subject: 'Hello ', // Subject line
+                    text: 'Hello world?', // plain text body
+                    html: '<b>Hello world?</b>' // html body
+                };
+                    transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(error);
+                        res.status(400).send({success: false});
+                    } else {
+                        res.redirect('/employers/dashboard');
+                    }
+                    });
+            })
+            .catch(err=>{
+                res.send(err);
+            })
         })
         .catch(err => {
             res.send(err);
@@ -112,9 +159,10 @@ class EmployerController {
     }
 
     static editJob(req, res){
+        res.send(req.body);
         Job.update({
-            name: req.body.name,
-            type: req.body.type,
+            name: req.body.task_name,
+            type: req.body.task_type,
         }, {where: {
             id: req.params.id
         }})
@@ -129,7 +177,7 @@ class EmployerController {
     static editJobGet(req, res){
         Job.findById(req.params.id)
         .then(job => {
-            res.render('', {data: job})
+            res.render('employerEditTask', {id: req.params.id});
         })
         .catch(err => {
             res.send(err);
