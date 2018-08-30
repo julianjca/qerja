@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Op = sequelize.Op;
+  const crypto = require('crypto');
 
   const Employer = sequelize.define('Employer', {
     first_name: DataTypes.STRING,
@@ -35,12 +36,27 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    password: DataTypes.STRING
+    password: {type: DataTypes.STRING,
+      validate: {
+        isEnoughLength(password) {
+          if (password.length<7) {
+            throw new Error('Min 7 Character!')
+          }
+        }
+      }
+    }
   }, {
     hooks :{
       beforeCreate(instances,options){
         instances.role = 'employer';
+        const secret = this.email;
+        const hash = crypto.createHmac('sha256', secret)
+                   .update(this.password)
+                   .digest('hex');
+
+        this.password = hash;
       }
+
     }
   });
   Employer.associate = function(models) {
