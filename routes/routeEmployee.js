@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('');
+    res.render('employeeRegister');
 });
 
 router.post('/register', function(req, res) {

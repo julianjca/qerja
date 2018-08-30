@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, {});
   Employer.associate = function(models) {
-    // associations can be defined here
+    Employer.belongsToMany(models.Employee,{ through: models.Job });
   };
   return Employer;
 };

@@ -7,9 +7,16 @@ module.exports = (sequelize, DataTypes) => {
     profession: DataTypes.STRING,
     rating: DataTypes.INTEGER,
     availability: DataTypes.INTEGER
-  }, {});
+  }, {
+    hooks: {
+      beforeCreate(instance, options){
+        instance.availability = 1;
+        instance.rating = 1;
+      }
+    }
+  });
   Employee.associate = function(models) {
-    // associations can be defined here
+    Employee.belongsToMany(models.Employer,{ through: models.Job });
   };
   return Employee;
 };

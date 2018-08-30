@@ -1,7 +1,7 @@
 var Employee = require('../models/').Employee;
 
-class EmployeeController {  
-    
+class EmployeeController {
+
     static register(req, res) {
 
         Employee.create({
@@ -9,16 +9,14 @@ class EmployeeController {
             last_name   : req.body.last_name,
             email       : req.body.email,
             password    : req.body.password,
-            profession  : req.body.profession,
-            rating      : req.body.rating,
-            availability: req.body.availability
+            profession  : req.body.profession
         })
         .then(employee => {
 
         })
         .catch(err => {
-
-        })
+            res.send(err);
+        });
     }
     static edit(req, res){
         Employee.update({
@@ -37,8 +35,8 @@ class EmployeeController {
 
         })
         .catch(err => {
-
-        })
+            res.send(err);
+        });
     }
 
 
