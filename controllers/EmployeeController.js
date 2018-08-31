@@ -4,6 +4,11 @@ const crypto = require('crypto');
 class EmployeeController {
 
     static register(req, res) {
+        let password = req.body.password;
+        const secret = 'qerjalemburbagaiquda';
+        const hash = crypto.createHmac('sha256', secret)
+                    .update(password)
+                    .digest('hex');
         Employee.create({
             first_name  : req.body.first_name,
             last_name   : req.body.last_name,
@@ -12,7 +17,10 @@ class EmployeeController {
             profession  : req.body.profession
         })
         .then(employee => {
-            res.redirect('/employees');
+            setTimeout(() => {
+                res.redirect('/employees');
+
+            }, 1500);
         })
         .catch(err => {
             res.send(err);
@@ -50,6 +58,7 @@ class EmployeeController {
     }
 
     static findLogin(email,password,req,res){
+
         Employee.findOne(
             {where:{
                 email:email,
@@ -63,8 +72,11 @@ class EmployeeController {
                 role : user.role,
                 profession : user.profession
             };
+            console.log(req.session.user);
 
-            res.redirect('/employees/dashboard');
+            setTimeout(() => {
+                res.redirect('/employees/dashboard');
+            }, 2000);
         })
         .catch(err=>{
             res.send(err);

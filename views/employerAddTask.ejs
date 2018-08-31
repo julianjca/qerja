@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Employee Login Page</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet">
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <style>
     html {
@@ -106,12 +106,22 @@
       <option value="designer">designer</option>
     </select>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" onclick="buttonAnim()">
   </form>
 
   <h3><a href="/employers/dashboard">BACK</a></h3>
 
-
+  <script>
+    function buttonAnim() {
+      swal("Task Added!")
+        .then(() => {
+          window.location = "/employers/dashboard"
+        })
+        .catch(() => {
+          swal.close();
+        })
+    }
+  </script>
 </body>
 
 </html>

@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Employee Login Page</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
   <style>
@@ -109,7 +110,15 @@
 
 <body>
   <a href="/"><img src="logo.png" class="logo" /></a>
+  <h2 style="
+  margin-left:auto;
+  margin-right:auto;
+  text-align : center;
+  color :red;
 
+  ">
+    <%=error%>
+  </h2>
   <h1>WELCOME
     <br>
     EMPLOYER
@@ -123,13 +132,18 @@
     <label for="password">password</label>
     <input type="text" id="lname" name="password" placeholder="password" required="required">
 
-    <input type="submit" value="Submit" class="hvr-grow">
+    <input type="submit" value="Submit" class="hvr-grow" onclick="buttonAnim()">
   </form>
 
   <h2>Does not have an account? <br><a href="/employers/register">register</a></h2>
 
   <h3><a href="/" class="button-back">BACK</a></h3>
 
+  <script>
+    function buttonAnim() {
+      swal("Login Success!", "Welcome!🤘🏻", "success");
+    }
+  </script>
 
 </body>
 

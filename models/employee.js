@@ -31,13 +31,16 @@ module.exports = (sequelize, DataTypes) => {
         instance.availability = 1;
         instance.rating = 1;
         instance.role = 'employee';
-        const secret = this.email;
-        const hash = crypto.createHmac('sha256', secret)
-                   .update(this.password)
-                   .digest('hex');
+      },
+      // afterValidate(instace,options){
+      //   let password = instace.password;
+      //   const secret = 'qerjalemburbagaiquda';
+      //   const hash = crypto.createHmac('sha256', secret)
+      //               .update(password)
+      //               .digest('hex');
+      //               instace.password = hash;
 
-        this.password = hash;
-      }
+      // }
     }
   });
   Employee.associate = function(models) {

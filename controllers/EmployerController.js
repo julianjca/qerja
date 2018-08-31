@@ -38,7 +38,6 @@ class EmployerController {
     }
 
     static register(req, res){
-
         Employer.create({
             first_name  : req.body.first_name,
             last_name   : req.body.last_name,
@@ -46,7 +45,10 @@ class EmployerController {
             password    : req.body.password
         })
         .then(employer => {
-            res.redirect('/employers');
+            setTimeout(() => {
+                res.redirect('/employers');
+
+            }, 1500);
         })
         .catch(err => {
             res.send(err);
@@ -107,7 +109,9 @@ class EmployerController {
                         console.log(error);
                         res.status(400).send({success: false});
                     } else {
-                        res.redirect('/employers/dashboard');
+                        setTimeout(() => {
+                            res.redirect('/employers/dashboard');
+                        }, 2000);
                     }
                     });
             })
@@ -127,17 +131,16 @@ class EmployerController {
                 password:password}}
         )
         .then(user=>{
-            console.log(user)
-            console.log('masuk sini');
+            console.log(user);
             req.session.user = {
                 id: user.id,
                 first_name: user.first_name,
                 last_name: user.last_name,
                 role : user.role
             };
-
-            console.log(req.session)
-            res.redirect('/employers/dashboard');
+            setTimeout(() => {
+                res.redirect('/employers/dashboard');
+            }, 2000);
         })
         .catch(err=>{
             res.send(err);
