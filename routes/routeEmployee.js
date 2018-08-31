@@ -31,7 +31,10 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('employeeRegister');
+    const error = [];
+    res.render('employeeRegister',{
+        errors : error
+    });
 });
 
 router.post('/register', function(req, res) {

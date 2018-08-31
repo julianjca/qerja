@@ -23,7 +23,9 @@ class EmployeeController {
             }, 1500);
         })
         .catch(err => {
-            res.send(err);
+            res.render('employeeRegister',{
+                errors : err.message
+            });
         });
     }
     static edit(req, res){

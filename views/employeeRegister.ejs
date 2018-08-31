@@ -82,12 +82,27 @@
     border-radius: 4px;
     cursor: pointer;
 }
+.button-back {
+      text-decoration: none;
+      color: white;
+      background-color: black;
+      border-radius: 20px;
+      padding: 5px 10px;
+      margin-bottom: 30px;
+    }
   </style>
 
 </head>
 
 <body>
   <a href="/"><img src="logo.png" class="logo" /></a>
+
+  <h3 style="
+  color: red;
+  font-size: 20px;
+  ">
+    <%=errors%>
+  </h3>
 
   <h1>HI
     <br>
@@ -121,7 +136,7 @@
   </form>
 
 
-  <h3><a href="/">BACK</a></h3>
+  <h3 class="button-back"><a href="/employees">BACK</a></h3>
 
 
   <script>
