@@ -68,7 +68,7 @@ class EmployeeController {
         )
         .then(user=>{
             if(Object.keys(user).length === 0){
-                res.redirect('/employees');
+                res.redirect('/employees?error=Account or Password is wrong');
 
             } else{
                 req.session.user = {
@@ -86,7 +86,7 @@ class EmployeeController {
             }
         })
         .catch(err=>{
-            res.redirect('/employees');
+            res.redirect('/employees?error=Account or Password is wrong');
         });
     }
 

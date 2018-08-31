@@ -132,7 +132,7 @@ class EmployerController {
         )
         .then(user=>{
             if(Object.keys(user).length === 0){
-                res.redirect('/employers');
+                res.redirect('/employers?error=Account or Password is wrong');
             } else{
                 console.log(user);
             req.session.user = {
@@ -147,7 +147,7 @@ class EmployerController {
             }
         })
         .catch(err=>{
-            res.redirect('/employers');
+            res.redirect('/employers?error=Account or Password is wrong');
         });
     }
 
