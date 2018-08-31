@@ -1,7 +1,6 @@
-import swal from 'sweetalert';
-
+const swal = require('sweetalert');
 function buttonAnim(){
-  swal("Good job!", "You clicked the button!", "success");
+  swal("Login Success!", "Welcome!", "success");
 }
 
 module.exports = buttonAnim;

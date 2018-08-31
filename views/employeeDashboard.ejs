@@ -34,7 +34,6 @@
       margin-left: auto;
       margin-right: auto;
       text-align: center;
-      margin-bottom: 50px;
     }
 
     td,
@@ -71,6 +70,7 @@
       text-align: center;
       margin-left: auto;
       margin-right: auto;
+      margin-top: -20px;
     }
 
     .logo {
@@ -122,36 +122,38 @@
       border-radius: 4px;
       cursor: pointer;
     }
-
-    .button-add {
-      text-decoration: none;
-      color: white;
-      background-color: black;
-      border-radius: 20px;
-      padding: 5px 10px;
-      margin-bottom: 30px;
-    }
   </style>
 
 </head>
 
 <body>
-  <a href="/employers/dashboard"><img src="logo.png" class="logo" /></a>
+  <a href="/"><img src="logo.png" class="logo" /></a>
 
   <h1>HI
     <br>
     EMPLOYER
     <br>🤘🏻
     <br>
-    THESE ARE YOUR PROJECT LIST
+    THESE ARE JOBS THAT CAN YOU TAKE
   </h1>
-  <h3><a href="/employers/addTask" class="button-add">ADD TASK</a></h3>
 
+  <h2>SEEING ALL JOBS FOR <br>
+    <%= userprof %>
+  </h2>
+
+  <% if(data.length===0) { %>
+  <h4 style="
+    font-size: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  ">No Jobs
+    Available 😭</h4>
+  <% } else{ %>
   <table>
     <tr>
       <th>No.</th>
       <th>Name</th>
-      <th>Type</th>
       <th>Available</th>
       <th>Option</th>
     </tr>
@@ -165,9 +167,6 @@
         <%= data[i].name %>
       </td>
       <td>
-        <%= data[i].type %>
-      </td>
-      <td>
         <%if(data[i].available===true){  %>
         ✅
         <%} else{%>
@@ -175,12 +174,55 @@
         <%}%>
       </td>
       <td>
-        <a href="/employers/edit/<%= data[i].id %>">Edit</a>
-        <a href="/employers/delete/<%= data[i].id %>">Delete</a>
+        <a href="/employees/takeJob/<%= userId %>/<%=data[i].id%>">TAKE</a>
       </td>
     </tr>
     <% } %>
   </table>
+  <% } %>
+
+  <% if(data2.length===0) { %>
+  <h4 style="
+    font-size: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  ">No
+    Current
+    Job To Finish 😭</h4>
+  <% } else{ %>
+  <h2 style="
+    font-size: 40px;
+    margin-top: 20px;
+
+  ">JOBS TO FINISH 🔥
+  </h2>
+  <table>
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Option</th>
+    </tr>
+
+
+
+    <% for (var i = 0; i < data2.length;i++) { %>
+    <tr>
+      <td>
+        <%= i+1 %>
+      </td>
+      <td>
+        <%= data2[i].name %>
+      </td>
+      <td>
+        <a href="/employees/done/<%=data2[i].id%>">DONE</a>
+      </td>
+    </tr>
+    <% } %>
+  </table>
+  <% } %>
+
+
 
 
 </body>
