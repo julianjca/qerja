@@ -26,6 +26,11 @@ router.get('/register', function(req, res) {
     res.render('employerRegister');
 });
 
+router.get('/logout', function(req, res) {
+    req.session.user = null;
+    res.redirect('/employers')
+});
+
 router.post('/register', function(req, res) {
     EmployerController.register(req, res);
 });

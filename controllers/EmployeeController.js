@@ -67,8 +67,9 @@ class EmployeeController {
                 role : user.role,
                 profession : user.profession
             };
-
-            res.redirect('/employees/dashboard');
+            setTimeout(() => {
+                res.redirect('/employees/dashboard');
+            }, 2000);
         })
         .catch(err=>{
             res.send(err);

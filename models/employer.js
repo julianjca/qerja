@@ -1,6 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Op = sequelize.Op;
+  const crypto = require('crypto');
+
 
   const Employer = sequelize.define('Employer', {
     first_name: DataTypes.STRING,
@@ -40,6 +42,14 @@ module.exports = (sequelize, DataTypes) => {
     hooks :{
       beforeCreate(instances,options){
         instances.role = 'employer';
+      },
+      afterValidate(instace,options){
+        let password = instace.password;
+        const secret = instace.email;
+        const hash = crypto.createHmac('sha256', secret)
+                    .update(password)
+                    .digest('hex');
+                    instace.password = hash;
       }
     }
   });

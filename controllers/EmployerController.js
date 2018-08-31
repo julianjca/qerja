@@ -109,7 +109,9 @@ class EmployerController {
                         console.log(error);
                         res.status(400).send({success: false});
                     } else {
-                        res.redirect('/employers/dashboard');
+                        setTimeout(() => {
+                            res.redirect('/employers/dashboard');
+                        }, 2000);
                     }
                     });
             })
@@ -137,9 +139,9 @@ class EmployerController {
                 last_name: user.last_name,
                 role : user.role
             };
-
-            console.log(req.session)
-            res.redirect('/employers/dashboard');
+            setTimeout(() => {
+                res.redirect('/employers/dashboard');
+            }, 2000);
         })
         .catch(err=>{
             res.send(err);
