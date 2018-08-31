@@ -25,7 +25,9 @@ router.post('/',function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('employerRegister');
+    res.render('employerRegister',{
+        errors : error
+    });
 });
 
 router.get('/logout', function(req, res) {

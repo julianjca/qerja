@@ -141,7 +141,13 @@ class EmployerController {
             }, 2000);
         })
         .catch(err=>{
-            res.send(err);
+            const error = [];
+            for(let i = 0;err.errors.length;i++){
+                error.push(err.errors[i].message);
+            }
+            res.render('employerRegister',{
+                errors : error
+            });
         });
     }
 
