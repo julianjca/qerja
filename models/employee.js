@@ -32,14 +32,15 @@ module.exports = (sequelize, DataTypes) => {
         instance.rating = 1;
         instance.role = 'employee';
       },
-      afterValidate(instace,options){
-        let password = instace.password;
-        const secret = instace.email;
-        const hash = crypto.createHmac('sha256', secret)
-                    .update(password)
-                    .digest('hex');
-                    instace.password = hash;
-      }
+      // afterValidate(instace,options){
+      //   let password = instace.password;
+      //   const secret = 'qerjalemburbagaiquda';
+      //   const hash = crypto.createHmac('sha256', secret)
+      //               .update(password)
+      //               .digest('hex');
+      //               instace.password = hash;
+
+      // }
     }
   });
   Employee.associate = function(models) {

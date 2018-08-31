@@ -38,7 +38,6 @@ class EmployerController {
     }
 
     static register(req, res){
-
         Employer.create({
             first_name  : req.body.first_name,
             last_name   : req.body.last_name,
@@ -132,8 +131,7 @@ class EmployerController {
                 password:password}}
         )
         .then(user=>{
-            console.log(user)
-            console.log('masuk sini');
+            console.log(user);
             req.session.user = {
                 id: user.id,
                 first_name: user.first_name,

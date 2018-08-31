@@ -6,12 +6,15 @@ const crypto = require('crypto');
 const isLoginEmployee = require('../helper/authenticationEmployee');
 
 router.get('/', function(req, res) {
-    res.render('employeeLogin');
+    let err = req.query.error;
+    res.render('employeeLogin',{
+        error : err
+    });
 });
 
 router.post('/',function(req, res) {
     let password = req.body.password;
-    const secret = req.body.email;
+    const secret = 'qerjalemburbagaiquda';
     const hash = crypto.createHmac('sha256', secret)
                 .update(password)
                 .digest('hex');
@@ -50,6 +53,5 @@ router.get('/takeJob/:id1/:id2',isLoginEmployee, function(req, res) { //employ  
 router.get('/done/:id',isLoginEmployee, function(req, res) {
     EmployeeController.deleteJobDone(req, res);
 });
-
 module.exports = router;
 

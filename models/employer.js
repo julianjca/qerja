@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isEnoughLength(password) {
           if (password.length<7) {
-            throw new Error('Min 7 Character!')
+            throw new Error('Min 7 Character!');
           }
         }
       }
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       afterValidate(instace,options){
         let password = instace.password;
-        const secret = instace.email;
+        const secret = 'qerjalemburbagaiquda';
         const hash = crypto.createHmac('sha256', secret)
                     .update(password)
                     .digest('hex');

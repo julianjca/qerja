@@ -6,20 +6,20 @@ const crypto = require('crypto');
 const isLoginEmployer = require('../helper/authentication');
 
 router.get('/', function(req, res) {
-    res.render('employerLogin');
+    let err = req.query.error;
+    res.render('employerLogin',{
+        error : err
+    });
 });
 
 router.post('/',function(req, res) {
-    if(req.body===null||req.body==={}){
-        res.redirect('/employers');
-    } else{
         let password = req.body.password;
-        const secret = req.body.email;
+        const secret = 'qerjalemburbagaiquda';
         const hash = crypto.createHmac('sha256', secret)
                     .update(password)
                     .digest('hex');
-        EmployerController.findLogin(req.body.email,hash,req,res);
-    }
+    EmployerController.findLogin(req.body.email,hash,req,res);
+
 });
 
 router.get('/register', function(req, res) {
