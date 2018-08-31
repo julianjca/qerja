@@ -67,21 +67,26 @@ class EmployeeController {
                 password:password}}
         )
         .then(user=>{
-            req.session.user = {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                role : user.role,
-                profession : user.profession
-            };
-            console.log(req.session.user);
+            if(Object.keys(user).length === 0){
+                res.redirect('/employees');
 
-            setTimeout(() => {
-                res.redirect('/employees/dashboard');
-            }, 2000);
+            } else{
+                req.session.user = {
+                    id: user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    role : user.role,
+                    profession : user.profession
+                };
+                console.log(req.session.user);
+
+                setTimeout(() => {
+                    res.redirect('/employees/dashboard');
+                }, 2000);
+            }
         })
         .catch(err=>{
-            res.send(err);
+            res.redirect('/employees');
         });
     }
 

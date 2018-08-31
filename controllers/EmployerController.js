@@ -131,7 +131,10 @@ class EmployerController {
                 password:password}}
         )
         .then(user=>{
-            console.log(user);
+            if(Object.keys(user).length === 0){
+                res.redirect('/employers');
+            } else{
+                console.log(user);
             req.session.user = {
                 id: user.id,
                 first_name: user.first_name,
@@ -141,9 +144,10 @@ class EmployerController {
             setTimeout(() => {
                 res.redirect('/employers/dashboard');
             }, 2000);
+            }
         })
         .catch(err=>{
-            res.send(err);
+            res.redirect('/employers');
         });
     }
 
