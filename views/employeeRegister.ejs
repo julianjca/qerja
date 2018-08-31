@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Employee Login Page</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
   <style>
@@ -115,14 +117,18 @@
       <option value="designer">designer</option>
     </select>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" onclick="buttonAnim()">
   </form>
 
-  <h2>Does not have an account? <br><a href="/employers/register">register</a></h2>
 
   <h3><a href="/">BACK</a></h3>
 
 
+  <script>
+    function buttonAnim() {
+      swal("Registration Success!", "Let's Login!🤘🏻", "success");
+    }
+  </script>
 </body>
 
 </html>

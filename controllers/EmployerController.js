@@ -48,7 +48,10 @@ class EmployerController {
             password    : hash
         })
         .then(employer => {
-            res.redirect('/employers');
+            setTimeout(() => {
+                res.redirect('/employers');
+
+            }, 1500);
         })
         .catch(err => {
             res.send(err);

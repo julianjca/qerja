@@ -16,7 +16,10 @@ class EmployeeController {
             profession  : req.body.profession
         })
         .then(employee => {
-            res.redirect('/employees');
+            setTimeout(() => {
+                res.redirect('/employees');
+
+            }, 1500);
         })
         .catch(err => {
             res.send(err);

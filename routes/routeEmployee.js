@@ -22,6 +22,11 @@ router.get('/dashboard',isLoginEmployee, function(req, res) {
     EmployeeController.findAllJobs(req,res);
 });
 
+router.get('/logout', function(req, res) {
+    req.session.user = null;
+    res.redirect('/employees');
+});
+
 router.get('/register', function(req, res) {
     res.render('employeeRegister');
 });

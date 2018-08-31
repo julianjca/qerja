@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Employee Login Page</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <style>
     html,
     body {
@@ -221,6 +223,37 @@
     <% } %>
   </table>
   <% } %>
+
+  <div style="
+  background-color: black;
+  color: white;
+  padding : 5px 5px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Lato';
+  font-weight: 500;
+  border-radius: 10px;
+  width: 30%;
+  cursor: pointer;
+"><a
+      onclick="buttonAnim()">LOGOUT</a></div>
+
+  <script>
+    function buttonAnim() {
+      swal("Are you sure you want to do this?", {
+          buttons: ["Oh noez!", "Aww yiss!"],
+        })
+        .then(() => {
+          window.location = "/employees/logout"
+        })
+        .catch(() => {
+          window.location = "/employees/dashboard"
+        });
+
+    }
+  </script>
 
 
 
