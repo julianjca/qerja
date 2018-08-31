@@ -24,6 +24,7 @@ class EmployerController {
                     'type',
                     'available'
                  ],
+                 where : {EmployerId:req.session.user.id}
             }
         )
         .then(data=>{
@@ -37,15 +38,12 @@ class EmployerController {
     }
 
     static register(req, res){
-        const secret = req.body.email;
-        const hash = crypto.createHmac('sha256', secret)
-                   .update(req.body.password)
-                   .digest('hex');
+
         Employer.create({
             first_name  : req.body.first_name,
             last_name   : req.body.last_name,
             email       : req.body.email,
-            password    : hash
+            password    : req.body.password
         })
         .then(employer => {
             setTimeout(() => {

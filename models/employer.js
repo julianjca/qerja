@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
   const Op = sequelize.Op;
   const crypto = require('crypto');
 
-
   const Employer = sequelize.define('Employer', {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
@@ -37,7 +36,15 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    password: DataTypes.STRING
+    password: {type: DataTypes.STRING,
+      validate: {
+        isEnoughLength(password) {
+          if (password.length<7) {
+            throw new Error('Min 7 Character!')
+          }
+        }
+      }
+    }
   }, {
     hooks :{
       beforeCreate(instances,options){
@@ -51,6 +58,7 @@ module.exports = (sequelize, DataTypes) => {
                     .digest('hex');
                     instace.password = hash;
       }
+
     }
   });
   Employer.associate = function(models) {
