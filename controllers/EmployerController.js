@@ -81,7 +81,8 @@ class EmployerController {
         .then(job => {
             Employee.findAll({
                 attributes: [
-                    'email'
+                    'email',
+                    'profession'
                  ],
                  where : {
                      profession : job.type
@@ -96,11 +97,10 @@ class EmployerController {
                         emails+= `${data[i].email}, `;
                     }
                 }
-
                 const mailOptions = {
-                    from: '"Julian" <qerjaworkspace@gmail.com>', // sender address
+                    from: '"Qerja" <qerjaworkspace@gmail.com>', // sender address
                     to: emails, // list of receivers
-                    subject: 'Hello ', // Subject line
+                    subject: `Hello, ${job.type}`, // Subject line
                     text: 'Hello world?', // plain text body
                     html: template // html body
                 };
