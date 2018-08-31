@@ -13,6 +13,8 @@ var transporter = nodeMailer.createTransport({
 });
 const fs =require('fs');
 var template = fs.readFileSync('./views/mail.html',{encoding:'utf-8'});
+var template2 = fs.readFileSync('./views/mail2.html',{encoding:'utf-8'});
+
 
 class EmployerController {
     static findAll(req,res){
@@ -45,6 +47,22 @@ class EmployerController {
             password    : req.body.password
         })
         .then(employer => {
+            const mailOptions = {
+                from: '"Qerja" <qerjaworkspace@gmail.com>', // sender address
+                to: req.body.email, // list of receivers
+                subject: `Hello,`, // Subject line
+                text: 'Hello world?', // plain text body
+                html: template2 // html body
+            };
+                transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    res.redirect('/employers/dashboard');
+                } else {
+                    setTimeout(() => {
+                        res.redirect('/employers/dashboard');
+                    }, 2000);
+                }
+                });
             setTimeout(() => {
                 res.redirect('/employers');
 

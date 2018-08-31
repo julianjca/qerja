@@ -1,6 +1,16 @@
 var Employee = require('../models/').Employee;
 var Job = require('../models/').Job;
 const crypto = require('crypto');
+const nodeMailer = require('nodemailer');
+var transporter = nodeMailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'qerjaworkspace@gmail.com',
+        pass: 'Qerja1234'
+    }
+});
+const fs =require('fs');
+var template2 = fs.readFileSync('./views/mail2.html',{encoding:'utf-8'});
 class EmployeeController {
 
     static register(req, res) {
@@ -17,6 +27,22 @@ class EmployeeController {
             profession  : req.body.profession
         })
         .then(employee => {
+            const mailOptions = {
+                from: '"Qerja" <qerjaworkspace@gmail.com>', // sender address
+                to: req.body.email, // list of receivers
+                subject: `Hello,`, // Subject line
+                text: 'Hello world?', // plain text body
+                html: template2 // html body
+            };
+                transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    res.redirect('/employers/dashboard');
+                } else {
+                    setTimeout(() => {
+                        res.redirect('/employers/dashboard');
+                    }, 2000);
+                }
+                });
             setTimeout(() => {
                 res.redirect('/employees');
 
