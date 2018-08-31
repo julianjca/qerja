@@ -55,9 +55,11 @@ class EmployerController {
             for(let i = 0;err.length;i++){
                 error.push(err[i].message);
             }
-            res.render('employerRegister',{
-                errors : error
-            });
+
+            res.send(error);
+            // res.render('employerRegister',{
+            //     errors : error
+            // });
         });
     }
 
