@@ -51,15 +51,9 @@ class EmployerController {
             }, 1500);
         })
         .catch(err => {
-            const error = [];
-            for(let i = 0;err.length;i++){
-                error.push(err[i].message);
-            }
-
-            res.send(error);
-            // res.render('employerRegister',{
-            //     errors : error
-            // });
+            res.render('employerRegister',{
+                errors : err.message
+            });
         });
     }
 
