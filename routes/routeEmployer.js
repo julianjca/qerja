@@ -5,6 +5,8 @@ router.use( express.static( "public" ) );
 const crypto = require('crypto');
 const isLoginEmployer = require('../helper/authentication');
 
+
+
 router.get('/', function(req, res) {
     let err = req.query.error;
     res.render('employerLogin',{
