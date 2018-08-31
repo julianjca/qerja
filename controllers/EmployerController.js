@@ -106,9 +106,7 @@ class EmployerController {
                 };
                     transporter.sendMail(mailOptions, (error, info) => {
                     if (error) {
-                        console.log(error);
-                        res.status(400).send({success: false});
-                    } else {
+                        res.redirect('/employers/dashboard')                    } else {
                         setTimeout(() => {
                             res.redirect('/employers/dashboard');
                         }, 2000);
