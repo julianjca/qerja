@@ -25,7 +25,8 @@
       margin-right: auto;
     }
 
-    h2,h3 {
+    h2,
+    h3 {
       font-size: 20px;
       font-weight: 500;
       text-align: center;
@@ -58,7 +59,8 @@
       margin-bottom: 10px;
     }
 
-    input[type=text], select {
+    input[type=text],
+    select {
       margin-left: auto;
       margin-right: auto;
       text-align: center;
@@ -69,41 +71,46 @@
       border-radius: 4px;
       box-sizing: border-box;
       margin-bottom: 30px;
-  }
+    }
 
     input[type=submit] {
-    width: 30%;
-    background-color: black;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.button-back{
-  text-decoration: none;
+      width: 30%;
+      background-color: black;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button-back {
+      text-decoration: none;
       color: white;
       background-color: black;
       border-radius: 20px;
       padding: 5px 10px;
       margin-bottom: 30px;
-}
-.hvr-grow {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-}
-.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+    }
+
+    .hvr-grow {
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-transform: perspective(1px) translateZ(0);
+      transform: perspective(1px) translateZ(0);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-property: transform;
+      transition-property: transform;
+    }
+
+    .hvr-grow:hover,
+    .hvr-grow:focus,
+    .hvr-grow:active {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
   </style>
 
 </head>
@@ -126,13 +133,8 @@
   </h1>
 
   <form class="login-form" action="/employers" method="POST">
-    <label for="username">email</label>
-    <input type="text" id="email" name="email" placeholder="email" required="required">
+    <%- include('./components/loginForm.ejs'); %>
 
-    <label for="password">password</label>
-    <input type="text" id="lname" name="password" placeholder="password" required="required">
-
-    <input type="submit" value="Submit" class="hvr-grow" onclick="buttonAnim()">
   </form>
 
   <h2>Does not have an account? <br><a href="/employers/register">register</a></h2>
