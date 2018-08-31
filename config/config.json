@@ -1,9 +1,13 @@
 {
-    "development": {
-        "username": "postgres",
-        "password": "Ilovechelsea11",
-        "database": "qerja",
-        "host": "127.0.0.1",
-        "dialect": "postgres"
-    }
+  "development": {
+    "username": "username",
+    "password": null,
+    "database": "qerja",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
 }

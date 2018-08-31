@@ -23,9 +23,7 @@ app.use(express.static(__dirname + '/public'));
 //Using Routes
 app.use('/', home);
 
-app.listen(port,()=>{
-  console.log(`application is on port:${port}`);
-});
+app.listen(process.env.PORT || '3000');
 
 app.use('/employees', routeEmployee);
 app.use('/employers', routeEmployer);
