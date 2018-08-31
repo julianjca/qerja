@@ -7,12 +7,12 @@ const nodeMailer = require('nodemailer');
 var transporter = nodeMailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'julianjca11@gmail.com',
-        pass: 'JosephineThalia11'
+        user: 'qerjaworkspace@gmail.com',
+        pass: 'Qerja1234'
     }
 });
-
-
+const fs =require('fs');
+var template = fs.readFileSync('./views/mail.html',{encoding:'utf-8'});
 
 class EmployerController {
     static findAll(req,res){
@@ -81,7 +81,8 @@ class EmployerController {
         .then(job => {
             Employee.findAll({
                 attributes: [
-                    'email'
+                    'email',
+                    'profession'
                  ],
                  where : {
                      profession : job.type
@@ -96,13 +97,12 @@ class EmployerController {
                         emails+= `${data[i].email}, `;
                     }
                 }
-
                 const mailOptions = {
-                    from: '"Julian" <julianjca11@gmail.com>', // sender address
+                    from: '"Qerja" <qerjaworkspace@gmail.com>', // sender address
                     to: emails, // list of receivers
-                    subject: 'Hello ', // Subject line
+                    subject: `Hello, ${job.type}`, // Subject line
                     text: 'Hello world?', // plain text body
-                    html: '<b>Hello world?</b>' // html body
+                    html: template // html body
                 };
                     transporter.sendMail(mailOptions, (error, info) => {
                     if (error) {
