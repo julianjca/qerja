@@ -10,12 +10,16 @@ router.get('/', function(req, res) {
 });
 
 router.post('/',function(req, res) {
-    let password = req.body.password;
-    const secret = req.body.email;
-    const hash = crypto.createHmac('sha256', secret)
-                .update(password)
-                .digest('hex');
-    EmployerController.findLogin(req.body.email,hash,req,res);
+    if(req.body===null||req.body==={}){
+        res.redirect('/employers');
+    } else{
+        let password = req.body.password;
+        const secret = req.body.email;
+        const hash = crypto.createHmac('sha256', secret)
+                    .update(password)
+                    .digest('hex');
+        EmployerController.findLogin(req.body.email,hash,req,res);
+    }
 });
 
 router.get('/register', function(req, res) {
