@@ -36,10 +36,10 @@ class EmployeeController {
             };
                 transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
-                    res.redirect('/employers/dashboard');
+                    res.redirect('/employees');
                 } else {
                     setTimeout(() => {
-                        res.redirect('/employers/dashboard');
+                        res.redirect('/employees/dashboard');
                     }, 2000);
                 }
                 });

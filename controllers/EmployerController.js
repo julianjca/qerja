@@ -56,7 +56,7 @@ class EmployerController {
             };
                 transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
-                    res.redirect('/employers/dashboard');
+                    res.redirect('/employers');
                 } else {
                     setTimeout(() => {
                         res.redirect('/employers/dashboard');
