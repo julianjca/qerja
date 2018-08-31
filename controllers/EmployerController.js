@@ -51,13 +51,14 @@ class EmployerController {
             }, 1500);
         })
         .catch(err => {
-            const error = [];
-            for(let i = 0;err.errors.length;i++){
-                error.push(err.errors[i].message);
-            }
-            res.render('employerRegister',{
-                errors : error
-            });
+            res.send(err.errors.message);
+            // const error = [];
+            // for(let i = 0;err.errors.length;i++){
+            //     error.push(err.errors[i].message);
+            // }
+            // res.render('employerRegister',{
+            //     errors : error
+            // });
         });
     }
 
