@@ -25,6 +25,7 @@ router.post('/',function(req, res) {
 });
 
 router.get('/register', function(req, res) {
+    const error = [];
     res.render('employerRegister',{
         errors : error
     });
